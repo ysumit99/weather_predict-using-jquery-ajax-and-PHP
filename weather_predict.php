@@ -51,7 +51,7 @@
   						
   						<h1 class="center white">Weather Predictor</h1>
 
-  						<p class="lead center white">Enter your city below to get a forcast of weather.</p>
+  						<p class="lead center white">Enter your city below to get a forecast of weather.</p>
 
   						<form>
   							<div class="form-group">

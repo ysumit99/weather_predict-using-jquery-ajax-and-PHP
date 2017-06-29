@@ -1,10 +1,14 @@
 <?php
 
-$contents = file_get_contents("http://www.weather-forecast.com/locations/Mumbai/forecasts/latest");
+$city = $_GET['city'];
 
-preg_match("/3 Day Weather Forecast Summary:/i", $contents, $matches);
+str_replace(" ", "", $city);
 
-print_r($matches);
+$contents = file_get_contents("http://www.weather-forecast.com/locations/".$city."/forecasts/latest");
+
+preg_match('/3 Day Weather Forecast Summary:<\/b><span class="read-more-small"><span class="read-more-content"> <span class="phrase">(.*?)</s', $contents, $matches);
+
+print_r($matches[1]);
 
 
 

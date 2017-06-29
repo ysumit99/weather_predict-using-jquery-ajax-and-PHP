@@ -21,7 +21,7 @@
 				height: 100%;
 				background-size: cover;
 				background-position: center;
-				padding-top: 150px;
+				padding-top: 100px;
 			}
 
 			.center {
@@ -37,6 +37,12 @@
 
 			button{
 				margin-top: 20px;
+				margin-bottom: 20px; 
+			}
+
+			.alert{
+				margin-top: 20px;
+				display: none;
 			}
 			
 		</style>
@@ -59,13 +65,19 @@
 
   							</div>
   								
-  								<button class=" btn btn-success btn-lg ">Find My Weather
+  								<button id="findMyWeather" class=" btn btn-success btn-lg ">Find My Weather
   								</button>
   								
   								
   							
   						</form>
   						
+  						<div id="success" class="alert alert-success">Success!</div>
+
+  						<div id="fail" class="alert alert-danger">Could not find weather data for that city. Please try again.</div>
+
+  						<div id="noCity" class="alert alert-danger">Please enter a city!</div>
+
   					</div>
   					
   				</div>
@@ -76,6 +88,36 @@
 					<!-- Latest compiled and minified JavaScript -->	
 					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
  							<script>	
+
+ 							$("#findMyWeather").click(function (event) {
+
+ 								event.preventDefault();
+
+ 								$(".alert").hide();
+
+ 								if($("#city").val()!="") {
+ 								
+ 								$.get("scraper.php?city="+$("#city").val(), function( data ) {
+
+ 									if(data=="")
+ 									{
+ 										
+ 										$("#fail").fadeIn();
+
+ 									}
+ 									else{
+
+ 										
+ 										$("#success").html(data).fadeIn();
+ 									}
+
+ 								});
+ 							} else {
+
+ 								$("#noCity").fadeIn();
+ 							}
+
+ 							});
 
              				</script>	 
         </body>	
